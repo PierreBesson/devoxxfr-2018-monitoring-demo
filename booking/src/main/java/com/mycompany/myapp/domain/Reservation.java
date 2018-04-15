@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.mycompany.myapp.client.dto.Tour;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 

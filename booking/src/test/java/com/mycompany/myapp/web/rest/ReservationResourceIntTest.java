@@ -1,11 +1,10 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.BookingApp;
-
+import com.mycompany.myapp.client.CatalogClient;
 import com.mycompany.myapp.domain.Reservation;
 import com.mycompany.myapp.repository.ReservationRepository;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +53,9 @@ public class ReservationResourceIntTest {
     private ReservationRepository reservationRepository;
 
     @Autowired
+    private CatalogClient catalogClient;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -72,7 +74,7 @@ public class ReservationResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ReservationResource reservationResource = new ReservationResource(reservationRepository);
+        final ReservationResource reservationResource = new ReservationResource(reservationRepository, catalogClient);
         this.restReservationMockMvc = MockMvcBuilders.standaloneSetup(reservationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

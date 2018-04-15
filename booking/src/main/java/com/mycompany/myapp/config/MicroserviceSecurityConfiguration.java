@@ -1,9 +1,11 @@
 package com.mycompany.myapp.config;
 
 import com.mycompany.myapp.security.AuthoritiesConstants;
+import com.mycompany.myapp.security.UserFeignClientInterceptor;
 import com.mycompany.myapp.security.jwt.JWTConfigurer;
 import com.mycompany.myapp.security.jwt.TokenProvider;
 
+import feign.RequestInterceptor;
 import org.springframework.context.annotation.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -75,5 +77,10 @@ public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdap
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
+    }
+
+    @Bean
+    public RequestInterceptor getUserFeignClientInterceptor() {
+        return new UserFeignClientInterceptor(tokenProvider);
     }
 }
