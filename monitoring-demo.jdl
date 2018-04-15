@@ -1,0 +1,44 @@
+application {
+  config {
+    baseName gateway,
+    applicationType gateway,
+    prodDatabaseType postgresql,
+    enableTranslation false,
+    serverPort 8080
+  }
+}
+
+application {
+  config {
+    baseName booking,
+    applicationType gateway,
+    prodDatabaseType mysql,
+    serverPort 8081
+  }
+  entities Reservation
+}
+
+entity Reservation {
+  tourCode Integer required,
+  personName String required,
+  notes String
+}
+
+application {
+  config {
+    baseName catalog,
+    applicationType gateway,
+    prodDatabaseType postgresql,
+    serverPort 8082
+  }
+  entities Tour
+}
+
+entity Tour {
+  tourName String required,
+  type String,
+  duration String
+  fromDate ZonedDateTime
+  toDate ZonedDateTime
+  description String
+}
