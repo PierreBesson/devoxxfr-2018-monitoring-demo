@@ -116,8 +116,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new JWTConfigurer(tokenProvider);
     }
 
-    @Bean
+    /*@Bean
     public RequestInterceptor getUserFeignClientInterceptor() {
         return new UserFeignClientInterceptor(tokenProvider);
     }
-}
+*/}

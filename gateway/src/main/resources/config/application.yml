@@ -58,6 +58,12 @@ hystrix:
 feign:
     hystrix:
         enabled: true
+    client:
+        config:
+            default:
+                connectTimeout: 5000
+                readTimeout: 5000
+                logger: FULL
 
 management:
     security:

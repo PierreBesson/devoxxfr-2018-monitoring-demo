@@ -92,7 +92,7 @@ public class CustomReservationResource {
     @Timed
     public ResponseEntity<Reservation> creationRandom() throws Exception {
         log.debug("DEMO: Create random reservation");
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         Reservation reservation = new Reservation()
             .tourCode(1L)
             .paid(false)
