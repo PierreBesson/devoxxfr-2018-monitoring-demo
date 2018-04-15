@@ -7,6 +7,7 @@ import com.mycompany.myapp.repository.ReservationRepository;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * REST controller for managing Reservation.
@@ -102,6 +104,39 @@ public class ReservationResource {
         log.debug("REST request to get Reservation : {}", id);
         Reservation reservation = reservationRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(reservation));
+    }
+
+    /**
+     * GET  /reservations/triggerError : just throws an exception
+     *
+     * @return never
+     */
+    @GetMapping("/reservations/triggerError")
+    @Timed
+    public ResponseEntity<Reservation> triggerError() throws Exception {
+        log.debug("DEMO: Launch an exception !");
+        throw new Exception("demo");
+    }
+
+    /**
+     * POST  /reservations/createRandom : create random reservatoin
+     *
+     * @return never
+     */
+    @PostMapping("/reservations/createRandom")
+    @Timed
+    public ResponseEntity<Reservation> creationRandom() throws Exception {
+        log.debug("DEMO: Create random reservation");
+        Thread.sleep(1000);
+        Reservation reservation = new Reservation()
+            .tourCode(1L)
+            .paid(false)
+            .personName(RandomStringUtils.randomAlphabetic(10))
+            .notes(RandomStringUtils.randomAlphabetic(100));
+        Reservation result = reservationRepository.save(reservation);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, reservation.getId().toString()))
+            .body(result);
     }
 
     /**

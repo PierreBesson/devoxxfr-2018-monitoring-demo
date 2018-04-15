@@ -3,6 +3,7 @@ package com.mycompany.myapp.config;
 import com.mycompany.myapp.security.*;
 import com.mycompany.myapp.security.jwt.*;
 
+import feign.RequestInterceptor;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -115,4 +116,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new JWTConfigurer(tokenProvider);
     }
 
+
+    @Bean
+    public RequestInterceptor getUserFeignClientInterceptor() {
+        return new UserFeignClientInterceptor(tokenProvider);
+    }
 }
