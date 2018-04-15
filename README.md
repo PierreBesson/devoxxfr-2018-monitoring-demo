@@ -9,3 +9,7 @@
     - `docker-compose -f src/main/docker/jhipster-registry.yml up -d`
     - `./mvnw` and `yarn start` for the gateway
     - `./mvnw` for microservices
+
+- Package for prod and build the docker image: `./mvnw package -Pprod dockerfile:build`
+- Generate docker-compose files: `cd docker && jhipster docker-compose`
+- Start the stack: `docker-compose up -d`
