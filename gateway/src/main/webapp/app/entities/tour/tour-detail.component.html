@@ -1,0 +1,46 @@
+
+<div *ngIf="tour">
+    <h2><span>Tour</span> {{tour.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Tour Name</span></dt>
+        <dd>
+            <span>{{tour.tourName}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{tour.type}}</span>
+        </dd>
+        <dt><span>Duration</span></dt>
+        <dd>
+            <span>{{tour.duration}}</span>
+        </dd>
+        <dt><span>From Date</span></dt>
+        <dd>
+            <span>{{tour.fromDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>To Date</span></dt>
+        <dd>
+            <span>{{tour.toDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{tour.description}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tour/'+ tour.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

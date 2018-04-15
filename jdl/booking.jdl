@@ -1,0 +1,18 @@
+entity Reservation {
+  tourCode Long required,
+  personName String required,
+  paid Boolean required
+  notes String
+}
+
+entity Payment {
+  price Integer required,
+  buyerName String required
+  notes String
+}
+
+relationship OneToOne {
+    Payment{reservationCode} to Reservation
+}
+
+microservice * with booking

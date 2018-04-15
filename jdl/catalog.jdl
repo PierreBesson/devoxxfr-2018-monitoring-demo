@@ -1,0 +1,10 @@
+entity Tour {
+  tourName String required,
+  type String,
+  duration String
+  fromDate ZonedDateTime
+  toDate ZonedDateTime
+  description String
+}
+
+microservice Tour with catalog
