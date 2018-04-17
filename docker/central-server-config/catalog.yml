@@ -1,0 +1,7 @@
+# Reports Spectator Circuit Breaker metrics in the logs
+jhipster:
+    logging:
+        spectator-metrics:
+            enabled: true
+
+spring.metrics.export.delay-millis: 10
